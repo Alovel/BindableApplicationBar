@@ -153,9 +153,9 @@ namespace BindableApplicationBar
             DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             BindableApplicationBar target = (BindableApplicationBar)d;
-            DependencyObjectCollection<BindableApplicationBarMenuItem> oldMenuItems =
+            DependencyObjectCollection<BindableApplicationBarMenuItem> oldMenuItems = 
                 (DependencyObjectCollection<BindableApplicationBarMenuItem>)e.OldValue;
-            DependencyObjectCollection<BindableApplicationBarMenuItem> newMenuItems =
+            DependencyObjectCollection<BindableApplicationBarMenuItem> newMenuItems = 
                 target.MenuItems;
             target.OnMenuItemsChanged(oldMenuItems, newMenuItems);
         }
@@ -178,7 +178,7 @@ namespace BindableApplicationBar
 
             if (newMenuItems != null)
             {
-                newMenuItems.CollectionChanged +=
+                newMenuItems.CollectionChanged += 
                     this.MenuItemsCollectionChanged;
             }
         }
@@ -261,7 +261,7 @@ namespace BindableApplicationBar
                 {
                     // Copy item reference to prevent access to modified closure
                     var dataContext = buttonSource;
-                    var button =
+                    var button = 
                         this.buttonsSourceButtons.FirstOrDefault(
                             b => b.DataContext == dataContext);
 
@@ -321,7 +321,7 @@ namespace BindableApplicationBar
                     this.buttonsSourceButtons.Add(button);
                 }
             }
-        }
+        } 
         #endregion
 
         #region GenerateMenuItemsFromSource()
@@ -1086,7 +1086,7 @@ namespace BindableApplicationBar
         public void Attach(PhoneApplicationPage parentPage)
         {
             this.page = parentPage;
-            this.applicationBar =
+            this.applicationBar = 
                 (ApplicationBar)(//parentPage.ApplicationBar ?? 
                 (parentPage.ApplicationBar = new ApplicationBar()));
             this.applicationBar.StateChanged +=
@@ -1164,7 +1164,7 @@ namespace BindableApplicationBar
             {
                 this.BindableOpacity = this.applicationBar.Opacity;
             }
-        }
+        } 
         #endregion
 
         #region AttachButtons()
@@ -1186,7 +1186,7 @@ namespace BindableApplicationBar
                         new Binding("DataContext") { Source = this });
                 }
             }
-        }
+        } 
         #endregion
 
         #region AttachMenuItems()
@@ -1208,7 +1208,7 @@ namespace BindableApplicationBar
                         new Binding("DataContext") { Source = this });
                 }
             }
-        }
+        } 
         #endregion
 
         #region Detach()
@@ -1304,7 +1304,11 @@ namespace BindableApplicationBar
                 button.DataContext = this.DataContext;
             }
 
-            button.Attach(this.applicationBar, i);
+            //button.Attach(this.applicationBar, i);
+            if (button.IconUri != null)
+            {
+                button.Attach(this.applicationBar, i);
+            }
         }
         #endregion
 
@@ -1356,7 +1360,7 @@ namespace BindableApplicationBar
         {
             this.isMenuVisible = e.IsMenuVisible;
             this.IsMenuVisible = this.isMenuVisible;
-        }
+        } 
         #endregion
 
         #region ButtonsCollectionChanged()
@@ -1387,7 +1391,7 @@ namespace BindableApplicationBar
                         e.NewStartingIndex + i++);
                 }
             }
-        }
+        } 
         #endregion
 
         #region MenuItemsCollectionChanged()
@@ -1419,7 +1423,7 @@ namespace BindableApplicationBar
                         e.NewStartingIndex + i++);
                 }
             }
-        }
+        } 
         #endregion
     }
 }
